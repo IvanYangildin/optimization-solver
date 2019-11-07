@@ -2,9 +2,9 @@
 #define ISET_H
 
 #include "IVector.h"
-#include "SHARED_EXPORT.h"
+//#include "SHARED_EXPORT.h"
 
-class SHARED_EXPORT ISet
+class /*SHARED_EXPORT*/ ISet
 {
 public:
 
@@ -26,12 +26,6 @@ public:
     virtual unsigned int getSize() const = 0;
     virtual int clear() = 0;
 
-    virtual IIterator* end() = 0;
-    virtual IIterator* begin() = 0;
-
-    virtual int deleteIterator(IIterator * pIter) = 0;
-    virtual int getByIterator(IIterator const* pIter, IVector*& pItem) const = 0;
-
     class IIterator
     {
     public:
@@ -44,7 +38,7 @@ public:
         IIterator(ISet const* const set, int pos);
 
         /*dtor*/
-        virtual ~IIterator() = default;
+        virtual ~IIterator(){};
 
     private:
         /*non default copyable*/
@@ -52,8 +46,14 @@ public:
         void operator=(const IIterator& other) = delete;
     };
 
+    virtual IIterator* end() = 0;
+    virtual IIterator* begin() = 0;
+
+    virtual int deleteIterator(IIterator * pIter) = 0;
+    virtual int getByIterator(IIterator const* pIter, IVector*& pItem) const = 0;
+
     /*dtor*/
-    virtual ~ISet() = default;
+    virtual ~ISet(){};
 
 protected:
     ISet() = default;

@@ -33,7 +33,7 @@ public:
     virtual int dotProduct(IVector const* const right, double& res) const = 0;
     virtual int crossProduct(IVector const* const right)
     {
-        qt_assert("NOT IMPLEMENTED", __FILE__, __LINE__);
+        //qt_assert("NOT IMPLEMENTED", __FILE__, __LINE__);
         return ERR_NOT_IMPLEMENTED;
     }
 
@@ -43,7 +43,7 @@ public:
     static IVector* multiplyByScalar(IVector const* const left, double scalar);
     static IVector* crossProduct(IVector const* const left, IVector const* const right)
     {
-        qt_assert("NOT IMPLEMENTED", __FILE__, __LINE__);
+        //qt_assert("NOT IMPLEMENTED", __FILE__, __LINE__);
         return static_cast<IVector*>(0);
     }
 
@@ -56,16 +56,16 @@ public:
     virtual unsigned int getDim() const = 0;
     virtual int norm(NormType type, double& res) const = 0;
     virtual int setCoord(unsigned int index, double elem) = 0;
-    virtual int getCoord(unsigned int index, double & elem) = 0;
+    virtual int getCoord(unsigned int index, double & elem) const = 0;
     virtual int setAllCoords(unsigned int dim, double* coords) = 0;
     virtual int getCoordsPtr(unsigned int & dim, double const*& elem) const = 0;
     virtual IVector* clone() const = 0;
 
     /*dtor*/
-    virtual ~IVector() = default;
+    virtual ~IVector() {};
 
 protected:
-    IVector() = default;
+    IVector() {};
 
 private:
     /*non default copyable*/
